@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Rigidbody rb;
+    Rigidbody2D rb;
     [SerializeField]
     float force = 10.0f;
     Vector2 inputVector = Vector2.zero;
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         inputVector.x = Input.GetAxis("Horizontal");
-        inputVector.y = Input.GetAxis("Virtical");
+        inputVector.y = Input.GetAxis("Vertical");
     }
     private void FixedUpdate()
     {
-        rb.AddForce(inputVector);
+        rb.AddForce(inputVector,ForceMode2D.Impulse);
         inputVector = Vector2.zero;
     }
 }
